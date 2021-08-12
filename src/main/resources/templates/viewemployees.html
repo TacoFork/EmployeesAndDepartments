@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>[[${department.name}]] Department</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{main.css}">
+    <style>
+        h2 {
+            text-align: center;
+            padding: 2%;
+        }
+    </style>
+</head>
+<body>
+<div th:replace="base :: navbar"></div>
+<div class="container">
+    <h2>[[${department.name}]]</h2>
+    <div class="row row-col-lg-3 row-col-md-2 row-col-sm-1">
+        <div class="col" th:each="employee : ${department.employees}" align="center">
+            <div class="card" style="width: 18rem;">
+                <img th:src="${employee.photo}" class="card-img-top" alt="Employee Picture" width="300px" height="200px">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${employee.jobTitle}"></h5>
+                    <p>[[${employee.firstName}]] [[${employee.lastName}]]</p>
+                    <span sec:authorize="hasRole('ADMIN')">
+                        <a th:href="@{/updateEmployee/{id}(id=${employee.id})}" class="card-link">Update</a>
+                        <a th:href="@{/deleteEmployee/{id}(id=${employee.id})}" class="card-link">Delete</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
+</html>

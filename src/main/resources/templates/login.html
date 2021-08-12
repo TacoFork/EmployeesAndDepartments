@@ -11,10 +11,9 @@
 <div th:replace="base :: navbar"></div>
 <div class="container">
     <h2 class="pageTitle">Login</h2>
-
     <div class="row justify-content-center">
-        <div th:if="${param.logout}">You have been successfully logged out</div>
         <div class="col-4">
+            <div th:if="${param.logout}">You have been successfully logged out</div>
             <form th:action="@{/login}" method="post">
                 <div class="mb-3">
                     <label for="username" class="form-label">Username</label>
