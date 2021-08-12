@@ -18,7 +18,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity httpSecurity) throws Exception{
         httpSecurity.authorizeRequests()
                 .antMatchers("/h2-console/**").permitAll()
-                .antMatchers("/deleteEmployee/**").hasRole("ADMIN")
                 .antMatchers("/addDepartment").hasRole("ADMIN")
                 .antMatchers("/addEmployee").hasRole("ADMIN")
                 .antMatchers("/deleteDepartment/**").hasRole("ADMIN")
@@ -26,7 +25,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/updateDepartment/**").hasRole("ADMIN")
                 .antMatchers("/updateEmployee/**").hasRole("ADMIN")
                 .antMatchers("/allDepartments").hasAnyRole("ADMIN", "USER")
-                .antMatchers("/allEmployees").hasAnyRole("ADMIN", "USER")
+                .antMatchers("/allEmployees").permitAll()
                 .antMatchers("/**").permitAll()
                 .and()
                 .formLogin()

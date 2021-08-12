@@ -22,8 +22,8 @@
             <div class="card" style="width: 18rem;">
                 <img th:src="${employee.photo}" class="card-img-top" alt="Employee Picture" width="300px" height="200px">
                 <div class="card-body">
-                    <h5 class="card-title" th:text="${employee.jobTitle}"></h5>
-                    <p>[[${employee.firstName}]] [[${employee.lastName}]]</p>
+                    <h5 class="card-title">[[${employee.firstName}]] [[${employee.lastName}]]</h5>
+                    <p th:text="${employee.jobTitle}"></p>
                     <span sec:authorize="hasRole('ADMIN')">
                         <a th:href="@{/updateEmployee/{id}(id=${employee.id})}" class="card-link">Update</a>
                         <a th:href="@{/deleteEmployee/{id}(id=${employee.id})}" class="card-link">Delete</a>
